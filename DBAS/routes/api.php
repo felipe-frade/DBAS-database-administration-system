@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DatabaseController;
+use App\Http\Controllers\TableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'v1'], function () {
     Route::get('/database/{nome}', [DatabaseController::class, 'show']);
+    Route::get('/database/{nome}/{tipo}', [DatabaseController::class, 'show']);
+    Route::get('/table/{database}/{table}', [TableController::class, 'show']);
+    Route::get('/table/{database}/{table}/{tipo}', [TableController::class, 'show']);
 });

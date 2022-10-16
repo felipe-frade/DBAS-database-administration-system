@@ -12,6 +12,19 @@ class DatabaseModel extends Model
 
     public function getTables($nome)
     {
-        DB::select("");
+        $sql = "SELECT t.TABLE_SCHEMA, t.TABLE_NAME, t.TABLE_ROWS, t.TABLE_COMMENT FROM TABLES t WHERE t.TABLE_SCHEMA = '" . $nome . "'";
+        return DB::select($sql);
+    }
+    
+    public function getEmptyTables($nome)
+    {
+        $sql = "SELECT t.TABLE_SCHEMA, t.TABLE_NAME, t.TABLE_ROWS, t.TABLE_COMMENT FROM TABLES t WHERE t.TABLE_ROWS = 0 and t.TABLE_SCHEMA = '" . $nome . "'";
+        return DB::select($sql);
+    }
+    
+    public function getIndescribableTables($nome)
+    {
+        $sql = "SELECT t.TABLE_SCHEMA, t.TABLE_NAME, t.TABLE_ROWS, t.TABLE_COMMENT FROM TABLES t WHERE LENGTH(t.TABLE_COMMENT) = 0 and t.TABLE_SCHEMA = '" . $nome . "'";
+        return DB::select($sql);
     }
 }
