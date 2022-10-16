@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseModel extends Model
 {
@@ -11,6 +12,6 @@ class DatabaseModel extends Model
 
     public function getTables($nome)
     {
-        
+        DB::select("");
     }
 }
